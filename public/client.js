@@ -29,27 +29,19 @@ const createAccountRow = (accountId, accountData) => {
   return tableRow;
 };
 
-<<<<<<< HEAD
 // Fetch the account data from the server and append rows to api1-table and api2-table
-fetch('/data')
-  .then((response) => response.json())
-  .then((data) => {
-=======
 const fetchData = async () => {
   try {
     const response = await fetch('/data');
     const data = await response.json();
 
->>>>>>> heroku/master
     const api1Table = document.getElementById('api1-table');
     const api2Table = document.getElementById('api2-table');
 
     if (data !== null) {
-<<<<<<< HEAD
-
       api1Table.innerHTML = '';
       api2Table.innerHTML = '';
-      
+
       // Iterate over the account data and create the table rows for API1
       data.api1.forEach((account) => {
         const row = createAccountRow(account.id, account);
@@ -59,29 +51,12 @@ const fetchData = async () => {
       // Iterate over the account data and create the table rows for API2
       data.api2.forEach((account) => {
         const row = createAccountRow(account.id, account);
-=======
-      api1Table.innerHTML = '';
-      api2Table.innerHTML = '';
-
-      data.api1.forEach((account) => {
-        const row = createTableRow(account);
-        api1Table.appendChild(row);
-      });
-
-      data.api2.forEach((account) => {
-        const row = createTableRow(account);
->>>>>>> heroku/master
         api2Table.appendChild(row);
       });
     } else {
       console.error('Account data is null or empty.');
     }
-<<<<<<< HEAD
-  })
-  .catch((error) => {
-=======
   } catch (error) {
->>>>>>> heroku/master
     console.error('Error fetching account data:', error);
   }
 };
