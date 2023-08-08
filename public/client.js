@@ -6,12 +6,12 @@ const api2Table = document.getElementById('api2-table');
 const createAccountRow = (accountId, accountData) => {
   const tableRow = document.createElement('tr');
   tableRow.innerHTML = `
-      <td>${accountData.title}</td>
       <td>${accountId}</td>
       <td>${accountData.name}</td>
       <td>$${accountData.balance}</td>
       <td>$${accountData.capital}</td>
       <td>${accountData.bots.join(', ')}</td>
+      <td>${accountData.title}</td>
       <td>${accountData.percentage}%</td>
       <td>
           <button onclick="closeAllPositions(${accountId})">Close All Positions</button>
