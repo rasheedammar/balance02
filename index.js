@@ -34,17 +34,11 @@ const capitalMap = new Map([
 
   [32427154,{ title: 'G124', capital: 2000, bots: ['botId1', 'botId2'] }],    
 
-  [32427159, { title: 'G125',capital: 157, bots: ['botId1', 'botId2'] }],    
-
   [32428979, { title: 'G66',capital: 2000, bots: ['botId1', 'botId2'] }],    
 
   [32433201 ,{ title: 'G67',capital: 345, bots: ['botId1', 'botId2'] }],    
 
   [32208556 ,{ title: 'G27',capital: 500, bots: ['botId1', 'botId2'] }],    
-
-  [32268993 ,{title:  'G112',capital: 500, bots: ['botId1', 'botId2'] }],    
-
-  [32423648, { title: '103',capital: 3000, bots: ['botId1', 'botId2'] }],    
 
   [32244363, { title: 'G117',capital: 3000, bots: ['botId1', 'botId2'] }],    
 
@@ -52,7 +46,11 @@ const capitalMap = new Map([
 
   [32423630 ,{title: 'G98',capital: 427, bots: ['botId1', 'botId2'] }],    
 
-  [ 32435532,{title: 'G72',capital: 2000, bots: ['botId1', 'botId2'] }],    
+  [ 32435532,{title: 'G72',capital: 2000, bots: ['botId1', 'botId2'] }],   
+
+  [ 32152427,{title: 'G22',capital: 500, bots: ['botId1', 'botId2'] }],  
+
+  [ 32260429,{title: 'G30',capital: 500, bots: ['botId1', 'botId2'] }],    
 
 ]);
 
@@ -60,11 +58,11 @@ app.get('/data', async (req, res) => {
   try {
     const api1Ids = [
       32101201, 31876293, 32103676, 32178454, 32427154,
-      32427107, 32428979, 32433201, 32427159, 31814867,
+      32427107, 32428979, 32433201, 31814867,32152427,
     ];
     const api2Ids = [
-      32208556, 32268993, 32423648, 32244363, 32244371,
-      32423630, 32435532,
+      32208556, 32244363, 32244371,
+      32423630, 32435532,32260429,
     ];
 
     // ... (Your existing code)
@@ -103,8 +101,6 @@ const api2Results = await Promise.all(api2Ids.map(async (id) => {
   };
 }));
 
-// ... (Your existing code)
-
 
     const data = {
       api1: api1Results.sort((account1, account2) => account2.balance - account1.balance),
@@ -117,34 +113,6 @@ const api2Results = await Promise.all(api2Ids.map(async (id) => {
     res.status(500).json({ error: 'Error fetching balances from APIs' });
   }
 });
-
-const stopAllBots = async (botIds) => {
-  try {
-    const api1Ids = [32101201, 31876293, 32103676, 32178454, 32427154, 32427107, 32428979, 32433201, 32427159, 31814867];
-    const api2Ids = [32208556, 32268993, 32423648, 32244363, 32244371, 32423630, 32435532];
-    const api1Bots = botIds.filter((botId) => api1Ids.includes(botId));
-    const api2Bots = botIds.filter((botId) => api2Ids.includes(botId));
-
-    if (api1Bots.length > 0) {
-      // Implement the logic to stop all bots for the given account ID using API 1
-      // ... (Your logic to stop bots using API 1 goes here)
-      return { success: true, message: 'All bots stopped successfully for account ID: ' + botIds };
-    } else if (api2Bots.length > 0) {
-      // Implement the logic to stop all bots for the given account ID using API 2
-      // ... (Your logic to stop bots using API 2 goes here)
-      return { success: true, message: 'All bots stopped successfully for account ID: ' + botIds };
-    } else {
-      throw new Error('Invalid bot ID');
-    }
-    
-  } catch (error) {
-    console.error('Error stopping bots:', error);
-    throw new Error('Error stopping bots for account ID: ' + botIds);
-  }
-};
-
-
-
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

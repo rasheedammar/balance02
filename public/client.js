@@ -1,3 +1,7 @@
+// Define api1Table and api2Table
+const api1Table = document.getElementById('api1-table');
+const api2Table = document.getElementById('api2-table');
+
 // Function to create an account row with a stop bot button
 const createAccountRow = (accountId, accountData) => {
   const tableRow = document.createElement('tr');
@@ -32,30 +36,31 @@ const createAccountRow = (accountId, accountData) => {
 // Fetch the account data from the server and append rows to api1-table and api2-table
 const fetchData = async () => {
   try {
-    const response = await fetch('/data');
+    const response = await fetch('/data'); // Corrected URL here
     const data = await response.json();
 
-    const api1Table = document.getElementById('api1-table');
-    const api2Table = document.getElementById('api2-table');
+    const api1TotalCapital = data.api1.reduce((total, account) => total + account.capital, 0);
+    const api2TotalCapital = data.api2.reduce((total, account) => total + account.capital, 0);
 
-    if (data !== null) {
-      api1Table.innerHTML = '';
-      api2Table.innerHTML = '';
+    // Update total capital display
+    document.getElementById('api1-total-capital').textContent = `$${api1TotalCapital}`;
+    document.getElementById('api2-total-capital').textContent = `$${api2TotalCapital}`;
 
-      // Iterate over the account data and create the table rows for API1
-      data.api1.forEach((account) => {
-        const row = createAccountRow(account.id, account);
-        api1Table.appendChild(row);
-      });
+    // Clear existing table rows
+    api1Table.innerHTML = '';
+    api2Table.innerHTML = '';
 
-      // Iterate over the account data and create the table rows for API2
-      data.api2.forEach((account) => {
-        const row = createAccountRow(account.id, account);
-        api2Table.appendChild(row);
-      });
-    } else {
-      console.error('Account data is null or empty.');
-    }
+    // Iterate over the account data and create the table rows for API1
+    data.api1.forEach((account) => {
+      const row = createAccountRow(account.id, account);
+      api1Table.appendChild(row);
+    });
+
+    // Iterate over the account data and create the table rows for API2
+    data.api2.forEach((account) => {
+      const row = createAccountRow(account.id, account);
+      api2Table.appendChild(row);
+    });
   } catch (error) {
     console.error('Error fetching account data:', error);
   }
