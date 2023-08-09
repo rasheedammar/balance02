@@ -10,17 +10,18 @@ const createAccountRow = (accountId, accountData) => {
       <td>${accountData.name}</td>
       <td>$${accountData.balance}</td>
       <td>$${accountData.capital}</td>
-      <td>${accountData.bots.join(', ')}</td>
       <td>${accountData.title}</td>
       <td>${accountData.percentage}%</td>
-      <td>
-          <button onclick="closeAllPositions(${accountId})">Close All Positions</button>
-          <button onclick="stopAllBots(${accountId})">Stop Bots</button>
-      </td>
+      <td><button class="load-balance-button" data-account-id="${accountId}">Load Balance</button></td>
+
   `;
 
   // Apply percentage color based on the percentage value
-  const percentageCell = tableRow.querySelector('td:nth-child(7)');
+  const percentageCell = tableRow.querySelector('td:nth-child(6)');
+  
+  console.log('tableRow:', tableRow); // Log the table row
+  console.log('percentageCell:', percentageCell); // Log the selected element
+  
   const percentage = parseFloat(accountData.percentage);
   if (!isNaN(percentage)) {
     if (percentage < 0) {
