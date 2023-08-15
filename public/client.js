@@ -12,8 +12,6 @@ const createAccountRow = (accountId, accountData) => {
       <td>$${accountData.capital}</td>
       <td>${accountData.title}</td>
       <td>${accountData.percentage}%</td>
-      <td><button class="load-balance-button" data-account-id="${accountId}">Load Balance</button></td>
-
   `;
 
   // Apply percentage color based on the percentage value
@@ -62,6 +60,29 @@ const fetchData = async () => {
       const row = createAccountRow(account.id, account);
       api2Table.appendChild(row);
     });
+
+
+
+    // client.js
+
+// Import the showBotDetails function from the showBot.js file
+const { showBotDetails } = require('./showBot');
+
+// Add an event listener to the button
+document.addEventListener('DOMContentLoaded', () => {
+  const loadBotButton = document.getElementById('load-bot-button');
+
+  loadBotButton.addEventListener('click', async () => {
+    // Replace 'yourBotId' and 'yourApi' with the actual bot ID and API
+    const botId = 11500872;
+    const api = api1;
+
+    // Call the showBotDetails function
+    await showBotDetails(botId, api);
+  });
+});
+
+
   } catch (error) {
     console.error('Error fetching account data:', error);
   }
