@@ -82,6 +82,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+const loadBotButtons = document.querySelectorAll('.load-bot-button');
+
+
 
   } catch (error) {
     console.error('Error fetching account data:', error);
