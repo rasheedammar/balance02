@@ -65,25 +65,6 @@ const fetchData = async () => {
 
     // client.js
 
-// Import the showBotDetails function from the showBot.js file
-const { showBotDetails } = require('./showBot');
-
-// Add an event listener to the button
-document.addEventListener('DOMContentLoaded', () => {
-  const loadBotButton = document.getElementById('load-bot-button');
-
-  loadBotButton.addEventListener('click', async () => {
-    // Replace 'yourBotId' and 'yourApi' with the actual bot ID and API
-    const botId = 11500872;
-    const api = api1;
-
-    // Call the showBotDetails function
-    await showBotDetails(botId, api);
-  });
-});
-
-const loadBotButtons = document.querySelectorAll('.load-bot-button');
-
 
 
   } catch (error) {
