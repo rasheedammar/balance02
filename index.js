@@ -44,7 +44,7 @@ const capitalMap = new Map([
   [32178454, { title: 'G24', capital: 1000 }],
   [32427107, { title: 'G122', capital: 2700 }],
   [32427154, { title: 'G124', capital: 2000 }],
-  [32428979, { title: 'G66', capital: 2000 }],
+  [32428979, { title: 'G66+1000', capital: 3000 }],
   [32433201, { title: 'G67', capital: 345 }],
   [32208556, { title: 'G27', capital: 1000 }],
   [32244363, { title: 'G117', capital: 1000 }],
