@@ -62,15 +62,16 @@ const fetchData = async () => {
     });
 
 
-
-    // client.js
-
-
-
   } catch (error) {
     console.error('Error fetching account data:', error);
   }
+
 };
 
 // Call the fetchData function when the page loads
 fetchData();
+
+// Set up a timer to fetch data every 5 minutes (300,000 milliseconds)
+setInterval(() => {
+  fetchData();
+}, 300000); // 5 minutes in milliseconds
