@@ -3,7 +3,7 @@ const threeCommasAPI = require('3commas-api-node');
 const express = require('express');
 const path = require('path');
 const TelegramBot = require('node-telegram-bot-api');
-const ALERT_THRESHOLD_PERCENT = 0.5;
+const ALERT_THRESHOLD_PERCENT = 3;
 
 
 const app = express();
