@@ -32,18 +32,26 @@ const createAccountRow = (accountId, accountData) => {
   return tableRow;
 };
 
-// Fetch the account data from the server and append rows to api1-table and api2-table
+
 const fetchData = async () => {
   try {
     const response = await fetch('/data'); // Corrected URL here
+
+    if (!response.ok) {
+      throw new Error(`Error fetching data. Status: ${response.status}`);
+    }
+
     const data = await response.json();
 
     const api1TotalCapital = data.api1.reduce((total, account) => total + account.capital, 0);
     const api2TotalCapital = data.api2.reduce((total, account) => total + account.capital, 0);
 
     // Update total capital display
-    document.getElementById('api1-total-capital').textContent = `$${api1TotalCapital}`;
-    document.getElementById('api2-total-capital').textContent = `$${api2TotalCapital}`;
+    const api1TotalCapitalElement = document.getElementById('api1-total-capital');
+    const api2TotalCapitalElement = document.getElementById('api2-total-capital');
+    
+    api1TotalCapitalElement.textContent = `$${api1TotalCapital}`;
+    api2TotalCapitalElement.textContent = `$${api2TotalCapital}`;
 
     // Clear existing table rows
     api1Table.innerHTML = '';
