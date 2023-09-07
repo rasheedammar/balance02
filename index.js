@@ -2,15 +2,25 @@ require('dotenv').config();
 const threeCommasAPI = require('3commas-api-node');
 const express = require('express');
 const path = require('path');
+const http = require('http'); // Add this line to import the 'http' module
+
 const TelegramBot = require('node-telegram-bot-api');
-const ALERT_THRESHOLD_PERCENT = 0.5;
+const ALERT_THRESHOLD_PERCENT = 1;
 
 
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Define a route that sends a response (ping)
+app.get('/ping', (req, res) => {
+  res.status(200).send('Ping received');
+});
+
 const publicDirectoryPath = path.join(__dirname, 'public');
 app.use(express.static(publicDirectoryPath));
+
+// Create an HTTP server
+const server = http.createServer(app);
 
 
 //amm3ro api10
@@ -157,8 +167,14 @@ console.error('Error fetching balances from APIs:', error);
 res.status(500).json({ error: 'Error fetching balances from APIs' });
 }
 });
+// Periodically send a ping request to the app itself (e.g., every 20 minutes)
+setInterval(() => {
+  http.get(`https://balance02-342321418b8a.herokuapp.com/ping`, (res) => {
+    // Handle the response if needed
+  });
+}, 20 * 60 * 1000); // 20 minutes in milliseconds
 
 // Start the server
 app.listen(port, () => {
-console.log(`Server is running on port ${port}`);
+  console.log(`Server is running on port ${port}`);
 });
