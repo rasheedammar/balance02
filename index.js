@@ -169,10 +169,10 @@ res.status(500).json({ error: 'Error fetching balances from APIs' });
 });
 // Periodically send a ping request to the app itself (e.g., every 20 minutes)
 setInterval(() => {
-  http.get(`https://balance02-342321418b8a.herokuapp.com/ping`, (res) => {
+  http.get(`http://balance02-342321418b8a.herokuapp.com/ping`, (res) => {
     // Handle the response if needed
   });
-}, 5 * 60 * 1000); // 20 minutes in milliseconds
+}, 4 * 60 * 1000); // 4 minutes in milliseconds
 
 // Start the server
 app.listen(port, () => {

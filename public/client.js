@@ -60,12 +60,9 @@ const fetchData = async () => {
       const row = createAccountRow(account.id, account);
       api2Table.appendChild(row);
     });
-
-
   } catch (error) {
     console.error('Error fetching account data:', error);
   }
-
 };
 
 // Call the fetchData function when the page loads
