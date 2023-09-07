@@ -5,7 +5,7 @@ const path = require('path');
 const http = require('http'); // Add this line to import the 'http' module
 
 const TelegramBot = require('node-telegram-bot-api');
-const ALERT_THRESHOLD_PERCENT = 1;
+const ALERT_THRESHOLD_PERCENT = 2;
 
 
 const app = express();
@@ -172,7 +172,7 @@ setInterval(() => {
   http.get(`https://balance02-342321418b8a.herokuapp.com/ping`, (res) => {
     // Handle the response if needed
   });
-}, 20 * 60 * 1000); // 20 minutes in milliseconds
+}, 5 * 60 * 1000); // 20 minutes in milliseconds
 
 // Start the server
 app.listen(port, () => {
