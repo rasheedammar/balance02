@@ -16,6 +16,7 @@ app.get('/ping', (req, res) => {
   res.status(200).send('Ping received');
 });
 
+
 const publicDirectoryPath = path.join(__dirname, 'public');
 app.use(express.static(publicDirectoryPath));
 
@@ -167,14 +168,9 @@ console.error('Error fetching balances from APIs:', error);
 res.status(500).json({ error: 'Error fetching balances from APIs' });
 }
 });
-// Periodically send a ping request to the app itself (e.g., every 20 minutes)
-setInterval(() => {
-  http.get(`https://balance02-342321418b8a.herokuapp.com/ping`, (res) => {
-    // Handle the response if needed
-  });
-}, 4 * 60 * 1000); // 4 minutes in milliseconds
+
 
 // Start the server
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
