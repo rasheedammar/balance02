@@ -44,34 +44,34 @@ const api2 = new threeCommasAPI({
 
 
 const capitalMap = new Map([
-  [31814867, { title: 'G13 2X 15M 0.58%', capital: 1000 }],
-  [32103676, { title: 'G14 2X 15M 0.58', capital: 2000 }],
-  [32474224,{title: 'G126 2X 15M 0.58%',capital: 1000}], 
+  [31814867, { title: 'G13 ',strategy: '2X 15M 0.58%', capital: 1000 }],
+  [32103676, { title: 'G14 ',strategy: '2X 15M 0.58', capital: 2000 }],
+  [32474224,{title: 'G126 ',strategy: '2X 15M 0.58%',capital: 1000}], 
   
-  [32470971,{title: 'G128 2X 1H 1%',capital: 1000}], 
-  [32427154, { title: 'G124 2X 1H 1%', capital: 1000 }],
+  [32470971,{title: 'G128 ',strategy: '2X 1H 1%',capital: 1000}], 
+  [32427154, { title: 'G124 ',strategy: '2X 1H 1%', capital: 1000 }],
 
-  [32427159,{title: 'G125 2X 4H 1%',capital: 1000}], 
-  [32101201, { title: 'G9 2X 4H 1%', capital: 1000 }],
+  [32427159,{title: 'G125 ',strategy: '2X 4H 1%',capital: 1000}], 
+  [32101201, { title: 'G9 ',strategy: '2X 4H 1%', capital: 1000 }],
 
-  [31876293, { title: 'G11 4X 15M 0.58%', capital: 1000 }],
-  [32244371, { title: 'G118 4x 15M 0.58%', capital: 1000 }],
-  [ 32101635,{title: 'G16 4X 15M 1% ',capital: 1000}], 
-  [32476763,{title: 'G129 4X 15M 1%',capital: 1000}], 
+  [31876293, { title: 'G11 ',strategy: '4X 15M 0.58%', capital: 1000 }],
+  [32244371, { title: 'G118 ',strategy: '4x 15M 0.58%', capital: 1000 }],
+  [ 32101635,{title: 'G16 ',strategy: '4X 15M 1% ',capital: 1000}], 
+  [32476763,{title: 'G129 ',strategy: '4X 15M 1%',capital: 1000}], 
 
-  [32244363, { title: 'G117 4X 1H 1%', capital: 1000 }],
-  [32260429, { title: 'G30 4X 1H 1%', capital: 1000 }],
-  [32152427, { title: 'G22 4X 1H 0.58%', capital: 1000 }],
-
-  
+  [32244363, { title: 'G117 ',strategy: '4X 1H 1%', capital: 1000 }],
+  [32260429, { title: 'G30 ',strategy: '4X 1H 1%', capital: 1000 }],
+  [32152427, { title: 'G22 ',strategy: '4X 1H 0.58%', capital: 1000 }],
 
   
-  [32178454, { title: 'G24', capital: 1000 }],
-  [32427107, { title: 'G122', capital: 1700 }],
-  [32428979, { title: 'G66+1000', capital: 3000 }],
-  [32433201, { title: 'G67', capital: 345 }],
-  [32423630, { title: 'G98', capital: 427 }],
-  [32435532, { title: 'G72', capital: 2000 }],
+
+  
+  [32178454, { title: 'G24',strategy: '', capital: 1000 }],
+  [32427107, { title: 'G122',strategy: '', capital: 1700 }],
+  [32428979, { title: 'G66+1000',strategy: '', capital: 3000 }],
+  [32433201, { title: 'G67', strategy: '',capital: 345 }],
+  [32423630, { title: 'G98',strategy: '', capital: 427 }],
+  [32435532, { title: 'G72', strategy: '',capital: 2000 }],
  
 ]);
 
@@ -127,6 +127,7 @@ app.get('/data', async (req, res) => {
     title: capitalInfo?.title || '',
     id,
     name: account?.name,
+    strategy: capitalInfo?.strategy || '',
     balance,
     capital,
     percentage,
@@ -137,6 +138,7 @@ app.get('/data', async (req, res) => {
 const api2Results = await Promise.all(api2Ids.map(async (id) => {
   const account = await api2.accountLoadBalances(id);
   const capitalInfo = capitalMap.get(id);
+  
   const balance = Math.floor(account?.primary_display_currency_amount?.amount) || 0;
   const capital = capitalInfo?.capital || 0;
   const percentage = ((balance - capital) / capital * 100).toFixed(1);
@@ -152,6 +154,7 @@ const api2Results = await Promise.all(api2Ids.map(async (id) => {
     title: capitalInfo?.title || '',
     id,
     name: account?.name,
+    strategy: capitalInfo?.strategy || '',
     balance,
     capital,
     percentage,

@@ -8,6 +8,7 @@ const createAccountRow = (accountId, accountData) => {
   tableRow.innerHTML = `
       <td>${accountId}</td>
       <td>${accountData.name}</td>
+      <td>${accountData.strategy}</td>
       <td>$${accountData.balance}</td>
       <td>$${accountData.capital}</td>
       <td>${accountData.title}</td>
@@ -15,7 +16,7 @@ const createAccountRow = (accountId, accountData) => {
   `;
 
   // Apply percentage color based on the percentage value
-  const percentageCell = tableRow.querySelector('td:nth-child(6)');
+  const percentageCell = tableRow.querySelector('td:nth-child(7)');
   
   console.log('tableRow:', tableRow); // Log the table row
   console.log('percentageCell:', percentageCell); // Log the selected element
