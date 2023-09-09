@@ -2,6 +2,7 @@
 const api1Table = document.getElementById('api1-table');
 const api2Table = document.getElementById('api2-table');
 
+
 // Function to create an account row with a stop bot button
 const createAccountRow = (accountId, accountData) => {
   const tableRow = document.createElement('tr');
@@ -32,6 +33,22 @@ const createAccountRow = (accountId, accountData) => {
 
   return tableRow;
 };
+
+// Get the current time
+const currentTimeElement = document.getElementById('current-time');
+const now = new Date();
+const formattedTime = now.toLocaleTimeString(); // Format the time as desired
+currentTimeElement.textContent = formattedTime;
+
+// Add an event listener to ensure the DOM has fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+  // Get the current time again after DOM has loaded
+  const currentTimeElement = document.getElementById('current-time');
+  const now = new Date();
+  const formattedTime = now.toLocaleTimeString(); // Format the time as desired
+  currentTimeElement.textContent = formattedTime;
+
+});
 
 
 const fetchData = async () => {
